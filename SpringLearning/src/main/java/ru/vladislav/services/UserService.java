@@ -2,7 +2,7 @@ package ru.vladislav.services;
 
 import ru.vladislav.entities.User;
 
-public interface UserService {
+public interface UserService extends BaseService<User>{
 
     /**
      * проверяет, удовлетворен ли пользователь или нет
@@ -12,15 +12,5 @@ public interface UserService {
     boolean isGranted(String userName);
 
     boolean isRegistered(String userName);
-
-    Long save(User user);
-
-    User find(Long id);
-
-    User findByName(String name);
-
-    void update(User user);
-
-    void delete(Long id);
 
 }

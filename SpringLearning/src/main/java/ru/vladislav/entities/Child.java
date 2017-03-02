@@ -101,4 +101,16 @@ public class Child {
     public void setUser(User user) {
         this.user = user;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Child){
+            if (this.id.equals(((Child) obj).getId()) && this.surname.equals(((Child) obj).getSurname())
+                    && this.name.equals(((Child) obj).getName()) && this.patronymic.equals(((Child) obj).getPatronymic())
+                    && this.user.getId().equals(((Child) obj).getUser().getId())){
+                return true;
+            }
+        }
+        return false;
+    }
 }

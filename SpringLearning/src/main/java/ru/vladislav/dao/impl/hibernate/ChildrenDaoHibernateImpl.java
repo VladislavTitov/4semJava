@@ -10,6 +10,7 @@ import ru.vladislav.entities.Child;
 import ru.vladislav.entities.User;
 
 import javax.jws.soap.SOAPBinding;
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @Component("dao.hibernate.children")
@@ -19,23 +20,60 @@ public class ChildrenDaoHibernateImpl implements ChildrenDao {
     private SessionFactory sessionFactory;
 
     public Long save(Child model) {
-        return null;
+        model.setId(null);
+        Session session = getSession();
+        session.beginTransaction();
+        session.save(model);
+        Long id = model.getId();
+        session.getTransaction().commit();
+        return id;
     }
 
     public Child find(Long id) {
-        return null;
+        try{
+            Child child = new Child.Builder().setId(id).build();
+            Session session = getSession();
+            session.beginTransaction();
+            Child foundedChild = session.createQuery("from Child where id = :id", Child.class)
+                    .setProperties(child)
+                    .getSingleResult();
+            session.getTransaction().commit();
+            return foundedChild;
+        }catch (NoResultException e){
+            return null;
+        }
     }
 
     public void update(Child model) {
-
+        if (model.getId() == null){
+            throw new IllegalArgumentException("Updating child hasn't id!");
+        }
+        Session session = getSession();
+        session.beginTransaction();
+        session.update(model);
+        session.getTransaction().commit();
     }
 
     public void delete(Long id) {
-
+        try {
+            Session session = getSession();
+            session.beginTransaction();
+            Child child = session.createQuery("from Child where child_id = :childId", Child.class)
+                    .setParameter("childId", id)
+                    .getSingleResult();
+            session.delete(child);
+            session.getTransaction().commit();
+        }catch (NoResultException e){
+            e.printStackTrace();
+        }
     }
 
     public List<Child> findAll() {
-        return null;
+        Session currentSession = getSession();
+        currentSession.beginTransaction();
+        List<Child> allChildren = currentSession.createQuery("from Child", Child.class).list();
+        currentSession.getTransaction().commit();
+        return allChildren;
     }
 
     public List<Child> findByUserId(Long userId) {
