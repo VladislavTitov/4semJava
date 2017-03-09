@@ -1,14 +1,26 @@
 package ru.vladislav.entities;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "children")
 public class Child {
-    
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "child_surname")
     private String surname;
+
+    @Column(name = "child_name")
     private String name;
+
+    @Column(name = "child_patronymic")
     private String patronymic;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
     
     

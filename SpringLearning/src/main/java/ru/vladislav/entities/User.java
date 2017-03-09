@@ -1,15 +1,30 @@
 package ru.vladislav.entities;
 
+import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 
+@Entity
+@Table(name = "users")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "user_name")
     private String userName;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "date_registration")
     private Date dateRegistration;
+
+    @Column(name = "deleted")
     private boolean deleted;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Child> children;
 
     public static class Builder{

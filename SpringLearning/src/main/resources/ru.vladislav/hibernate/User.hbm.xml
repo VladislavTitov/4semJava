@@ -12,6 +12,7 @@
         <property name="userName" column="user_name" type="java.lang.String"/>
         <property name="dateRegistration" column="date_registration"/>
         <property name="deleted" column="deleted" type="java.lang.Boolean"/>
+        <property name="password" column="password" type="java.lang.String"/>
         <bag name="children" fetch="select">
             <key>
                 <column name="user_id"/>

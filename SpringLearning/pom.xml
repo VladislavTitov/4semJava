@@ -42,6 +42,13 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>1.11.1.RELEASE</version>
+        </dependency>
+
+
+        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>5.2.4.Final</version>
@@ -59,7 +66,6 @@
             <version>1.4.193</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.hsqldb/hsqldb -->
         <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
@@ -69,7 +75,6 @@
 
 
 
-        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
