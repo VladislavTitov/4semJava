@@ -11,7 +11,7 @@ import java.util.List;
 public class PostsServiceImpl implements PostsService {
 
     @Autowired
-    PostsRepo postsRepo;
+    private PostsRepo postsRepo;
 
     public Post save(Post post) {
         return postsRepo.save(post);

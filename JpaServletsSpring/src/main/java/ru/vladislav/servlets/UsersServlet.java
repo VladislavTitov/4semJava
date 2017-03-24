@@ -31,5 +31,6 @@ public class UsersServlet extends HttpServlet {
                 users) {
             writer.print(user.getName() + "\n\t" + user.getDescription() +"\n\n");
         }
+
     }
 }
